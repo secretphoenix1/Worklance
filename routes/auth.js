@@ -1,6 +1,6 @@
 import Otp from "../models/Otp.js";
 import { sendOTPEmail } from "../utils/email.js";
-
+console.log("OTP for", email, ":", otp);
 router.post("/verify-otp", async (req, res) => {
   const { email, otp } = req.body;
 
@@ -31,7 +31,12 @@ router.post("/send-otp", async (req, res) => {
     expiresAt: new Date(Date.now() + 5 * 60 * 1000),
   });
 
-  await sendOTPEmail(email, otp);
+  try {
+    await sendOTPEmail(email, otp);
+  } catch (err) {
+    console.error("Email failed:", err.message);
+  }
 
-  res.json({ success: true, message: "OTP sent" });
+  // IMPORTANT: always respond
+  res.json({ success: true, message: "OTP generated (email may fail)" });
 });
