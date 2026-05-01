@@ -225,6 +225,7 @@ exports.registerHR = async (req, res) => {
     const token = createToken(hr._id, "hr");
 
     res.json({
+      success: true,
       token,
       user: {
         ...sanitize(hr),
@@ -271,7 +272,7 @@ const requestRegisterOtp = async (req, res) => {
     });
 
     await sendOtp({ email: normalizedEmail, otp, purpose: "registration" });
-    res.json({ message: "OTP sent to email", ...buildOtpResponse(otpDoc) });
+    res.json({ success: true, message: "OTP sent to email", ...buildOtpResponse(otpDoc) });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });
@@ -325,7 +326,7 @@ const verifyRegisterOtp = async (req, res) => {
         designation: payload.designation,
       });
       const token = createToken(hr._id, "hr");
-      return res.json({ token, user: { ...sanitize(hr), role: "hr" } });
+      return res.json({ success: true, token, user: { ...sanitize(hr), role: "hr" } });
     }
 
     const user = await User.create({
@@ -336,7 +337,7 @@ const verifyRegisterOtp = async (req, res) => {
       password: payload.passwordHash,
     });
     const token = createToken(user._id, "user");
-    return res.json({ token, user: { ...sanitize(user), role: "user" } });
+    return res.json({ success: true, token, user: { ...sanitize(user), role: "user" } });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });

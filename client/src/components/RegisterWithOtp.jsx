@@ -42,7 +42,7 @@ try {
   // ✅ use status instead of data.success
   if (response.status === 200) {
     setIsOtpSent(true);
-    setMessage(response.data?.message || "OTP sent to your email. Please check your inbox.");
+    setMessage(response.data?.message || "OTP sent successfully. Please check your inbox or spam folder for the code.");
     setMessageType("success");
     setCooldown(45);
   } else {
