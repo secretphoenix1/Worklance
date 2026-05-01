@@ -542,7 +542,7 @@ const generateErrorRedirectScript = (message) => {
       <div style="max-width:420px;padding:32px;border-radius:20px;background:#fff;box-shadow:0 20px 60px rgba(15,23,42,0.08);text-align:center;">
         <h1 style="font-size:1.25rem;color:#111;margin-bottom:16px;">Sign in issue</h1>
         <p style="color:#475569;margin-bottom:24px;">${safeMessage.replace(/^"|"$/g, "")}</p>
-        <a href="/login" style="display:inline-flex;align-items:center;justify-content:center;padding:12px 20px;border-radius:999px;background:#0f172a;color:#fff;text-decoration:none;font-weight:600;">Go back to login</a>
+        <a href="https://worklance-nu.vercel.app/login" style="display:inline-flex;align-items:center;justify-content:center;padding:12px 20px;border-radius:999px;background:#0f172a;color:#fff;text-decoration:none;font-weight:600;">Go back to login</a>
       </div>
     </body></html>`;
 };
